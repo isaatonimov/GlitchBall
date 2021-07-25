@@ -1,0 +1,79 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &6016805916116904549
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5943911674325088356, guid: 60d19603790d2794dbd33593bc72d9c3, type: 3}
+      propertyPath: m_Name
+      value: VioletProjectile
+      objectReference: {fileID: 0}
+    - target: {fileID: 5943911674325088359, guid: 60d19603790d2794dbd33593bc72d9c3, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5943911674325088359, guid: 60d19603790d2794dbd33593bc72d9c3, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.07
+      objectReference: {fileID: 0}
+    - target: {fileID: 5943911674325088359, guid: 60d19603790d2794dbd33593bc72d9c3, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 5943911674325088359, guid: 60d19603790d2794dbd33593bc72d9c3, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.81
+      objectReference: {fileID: 0}
+    - target: {fileID: 5943911674325088359, guid: 60d19603790d2794dbd33593bc72d9c3, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.042585544
+      objectReference: {fileID: 0}
+    - target: {fileID: 5943911674325088359, guid: 60d19603790d2794dbd33593bc72d9c3, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.009440983
+      objectReference: {fileID: 0}
+    - target: {fileID: 5943911674325088359, guid: 60d19603790d2794dbd33593bc72d9c3, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.9753669
+      objectReference: {fileID: 0}
+    - target: {fileID: 5943911674325088359, guid: 60d19603790d2794dbd33593bc72d9c3, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.21623352
+      objectReference: {fileID: 0}
+    - target: {fileID: 5943911674325088359, guid: 60d19603790d2794dbd33593bc72d9c3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -25
+      objectReference: {fileID: 0}
+    - target: {fileID: 5943911674325088359, guid: 60d19603790d2794dbd33593bc72d9c3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 175
+      objectReference: {fileID: 0}
+    - target: {fileID: 5943911674325088359, guid: 60d19603790d2794dbd33593bc72d9c3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5943911674325088361, guid: 60d19603790d2794dbd33593bc72d9c3, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 39ee6fb994dafa1468da5b499a47b688, type: 2}
+    - target: {fileID: 5943911674325088363, guid: 60d19603790d2794dbd33593bc72d9c3, type: 3}
+      propertyPath: Magazine
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5943911674325088363, guid: 60d19603790d2794dbd33593bc72d9c3, type: 3}
+      propertyPath: ResetTime
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 5943911674325088363, guid: 60d19603790d2794dbd33593bc72d9c3, type: 3}
+      propertyPath: ParticlesOnDestroy
+      value: 
+      objectReference: {fileID: 5718572282766351619, guid: d6d5e6806192c0b40947d2db4c63c483, type: 3}
+    - target: {fileID: 6941911137266931128, guid: 60d19603790d2794dbd33593bc72d9c3, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 2
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 60d19603790d2794dbd33593bc72d9c3, type: 3}
