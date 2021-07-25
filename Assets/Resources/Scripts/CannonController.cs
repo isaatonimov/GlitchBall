@@ -17,45 +17,14 @@ namespace GlitchBallVR
         public SoundFXRef CannonShoot;
 
         public List<GameObject> Waypoints;
-        public List<ShootingMode> ShootingPattern;
 
-        //public Transform          Magazine;
         public GameObject ProjectilePrefab;
         public GameObject TrapPrefab;
 
-        public bool TrapsEnabled = true;
-        //Chance of insatiating Trap instead of Normal Projectile 0-100%
-        [Range(0f, 100f)]
-        public float TrapChance = 30f;
+        public Transform fixedCannonShootingPoint;
+        public Transform player;
 
-        public bool RandomStops;
-        public bool StopAtWaypoint = true;
-        [Range(0f, 10f)]
-        public float MinStopDuration = 2f;
-        [Range(0f, 10f)]
-        public float MaxStopDuration = 4f;
-        [Range(0f, 10f)]
-        public float MovementSpeed = 3f;
-
-        public bool RotateOnStop = true;
-        [Range(0f, 90f)]
-        public float RotationXmin = 15f;
-        [Range(0f, 90f)]
-        public float RotationXmax = 45f;
-        [Range(5f, 10f)]
-        public float ShootingForceMin = 8.25f;
-        [Range(5f, 10f)]
-        public float ShootingForceMax = 8.5f;
-
-        public bool ShootTimerActive = false;
-        public bool ShootAtWaypoint = true;
-        [Range(1f, 10f)]
-        public float ShootingTimerInterval = 1f;
-
-        //public bool BurstMode = false;
-        public int Burstrate = 4;
-        [Range(0f, 1f)]
-        public float BurstInterval = 0.2f;
+        private RoundConfiguration currentRoundConfig;
 
         private GameObject currentWaypointTarget;
         private int currentShootModeIndex = 0;
@@ -79,17 +48,17 @@ namespace GlitchBallVR
         {
             if (currentlyStopped == false)
             {
-                float step = MovementSpeed * Time.deltaTime;
+                float step = currentRoundConfig.MovementSpeed * Time.deltaTime;
                 transform.position = Vector3.MoveTowards(transform.position, currentWaypointTarget.transform.position, step);
 
                 //when waypoint is reached, go to next waypoint
                 if (Vector3.Distance(transform.position, currentWaypointTarget.transform.position) < 0.001f)
                 {
-                    if (StopAtWaypoint)
+                    if (currentRoundConfig.StopAtWaypoint)
                     {
-                        StartCoroutine(WaitAndRotate(Random.Range(MinStopDuration, MaxStopDuration)));
+                        StartCoroutine(WaitAndRotate(Random.Range(currentRoundConfig.MinStopDuration, currentRoundConfig.MaxStopDuration)));
 
-                        if (ShootAtWaypoint)
+                        if (currentRoundConfig.ShootAtWaypoint)
                         {
                             ShootAccordingToPattern();
                         }
@@ -99,7 +68,7 @@ namespace GlitchBallVR
                     currentWaypointTarget = Waypoints[Random.Range(0, Waypoints.Count)];
                 }
 
-                if (ShootTimerActive)
+                if (currentRoundConfig.ShootTimerActive)
                 {
                     if (shootTimer > 0)
                     {
@@ -107,46 +76,16 @@ namespace GlitchBallVR
                     }
                     else
                     {
-                        shootTimer = Random.Range(1f, ShootingTimerInterval);
+                        shootTimer = Random.Range(1f, currentRoundConfig.ShootingTimerInterval);
                         ShootAccordingToPattern();
                     }
                 }
-
-                //Code for testing cannon balls - buggy - needs timer
-                //if (Input.GetAxis("Oculus_CrossPlatform_PrimaryIndexTrigger") > 0 || Input.GetAxis("Oculus_CrossPlatform_SecondaryIndexTrigger") > 0)
-                //{
-                //    Shoot();
-                //}
-
             }
         }
 
-        //public void LoadNewConfiguration(GameObject gameObject)
-        //{
-        //    if (gameObject.GetComponent<RoundConfiguration>() != null)
-        //        StartWithConfiguration(gameObject.GetComponent<RoundConfiguration>());
-        //    else
-        //        StartWithoutConfiguration();
-        //}
-
         public void StartWithConfiguration(RoundConfiguration roundConfig)
         {
-            ShootingPattern         = roundConfig.ShootingPattern;
-            TrapsEnabled            = roundConfig.TrapsEnabled;
-            RandomStops             = roundConfig.RandomStops;
-            StopAtWaypoint          = roundConfig.StopAtWaypoint;
-            MinStopDuration         = roundConfig.MinStopDuration;
-            MaxStopDuration         = roundConfig.MaxStopDuration;
-            MovementSpeed           = roundConfig.MovementSpeed;
-            RotateOnStop            = roundConfig.RotateOnStop;
-            RotationXmin            = roundConfig.RotationXmin;
-            RotationXmax            = roundConfig.RotationXmax;
-            ShootingForceMin        = roundConfig.ShootingForceMin;
-            ShootTimerActive        = roundConfig.ShootTimerActive;
-            ShootAtWaypoint         = roundConfig.ShootAtWaypoint;
-            ShootingTimerInterval   = roundConfig.ShootingTimerInterval;
-            Burstrate               = roundConfig.Burstrate;
-            BurstInterval           = roundConfig.BurstInverval;
+            currentRoundConfig = roundConfig;
 
             currentlyStopped = false;
         }
@@ -166,7 +105,7 @@ namespace GlitchBallVR
         IEnumerator Rotate()
         {
             float speed = 3f;
-            Quaternion targetRotation = Quaternion.Euler(Random.Range(RotationXmin, RotationXmax), transform.rotation.y, transform.rotation.z);
+            Quaternion targetRotation = Quaternion.Euler(Random.Range(currentRoundConfig.RotationXmin, currentRoundConfig.RotationXmax), transform.rotation.y, transform.rotation.z);
             currentRotation = targetRotation;
 
             while (transform.rotation != targetRotation)
@@ -203,13 +142,9 @@ namespace GlitchBallVR
 
         private void ShootAccordingToPattern()
         {
-            //Debug.Log("pattern index (before shooting): " + currentShootModeIndex);
+            Shoot(currentRoundConfig.ShootingPattern[currentShootModeIndex], currentRoundConfig.Burstrate, currentRoundConfig.BurstInterval);
 
-            Shoot(ShootingPattern[currentShootModeIndex], Burstrate, BurstInterval);
-
-
-
-            if (currentShootModeIndex == ShootingPattern.Count - 1)
+            if (currentShootModeIndex == currentRoundConfig.ShootingPattern.Count - 1)
                 currentShootModeIndex = 0;
             else
                 currentShootModeIndex++;
@@ -234,18 +169,28 @@ namespace GlitchBallVR
 
             GameObject projectileToShoot = null;
 
-            if (Random.Range(0f, 100f) > TrapChance)
+            if (Random.Range(0f, 100f) > currentRoundConfig.TrapChance)
                 projectileToShoot = GameObject.Instantiate(ProjectilePrefab);
             else
                 projectileToShoot = GameObject.Instantiate(TrapPrefab);
 
             projectileToShoot.transform.position = transform.GetChild(0).position;
+            //projectileToShoot.transform.position = fixedCannonShootingPoint.position;
 
-            //projectileToShoot.gameObject.SetActive(true);
+            float randomShootingForce = Random.Range(currentRoundConfig.ShootingForceMin, currentRoundConfig.ShootingForceMax);
 
-            float randomShootingForce = Random.Range(ShootingForceMin, ShootingForceMax);
-
-            projectileToShoot.GetComponent<Rigidbody>().AddForce(new Vector3(0, randomShootingForce * 2, -randomShootingForce / 2), ForceMode.Impulse);
+            var gravity = System.Math.Abs(Physics.gravity.y);
+            Debug.Log(gravity);
+            Debug.Log(player.position);
+            var numSolutions = Ballistics.solve_ballistic_arc(projectileToShoot.transform.position, currentRoundConfig.ShootingForceMin, player.position, gravity, out var s0, out var s1);
+            if (numSolutions > 0)
+            {
+                projectileToShoot.GetComponent<Rigidbody>().AddForce(s0, ForceMode.Impulse);
+            }
+            else
+            {
+                Debug.LogWarning("Womp womp");
+            }
 
             //-> for calculating different angle - Mathf.Tan(currentRotation.x);
         }

@@ -14,6 +14,7 @@ namespace GlitchBallVR
         public float      TimerDurationPerTick  = 1f;
         public float      TimeBeforeRoundStarts   = 3f;
 
+        public UnityEvent GameLoaded;
         public UnityEvent NewRound;
         public UnityEvent GameOver;
         public UnityEvent GameWin;
@@ -34,7 +35,7 @@ namespace GlitchBallVR
             if(Rounds == null)
                 Rounds = new List<UnityEvent>();
 
-
+            GameLoaded.Invoke();
         }
 
         // Update is called once per frame

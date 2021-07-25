@@ -23,9 +23,9 @@ public class RoundConfiguration : ScriptableObject
     public float RotationXmin = 85;
     [Range(0f, 90f)]
     public float RotationXmax = 90;
-    [Range(5f, 10f)]
+    [Range(0.1f, 50f)]
     public float ShootingForceMin = 8;
-    [Range(5f, 10f)]
+    [Range(0.1f, 50f)]
     public float ShootingForceMax = 8;
     public bool ShootTimerActive = false;
     public bool ShootAtWaypoint = true;
@@ -33,6 +33,6 @@ public class RoundConfiguration : ScriptableObject
     public float ShootingTimerInterval = 1;
     public int Burstrate = 2;
     [Range(0f, 1f)]
-    public float BurstInverval = 0.4f;
+    public float BurstInterval = 0.4f;
     public int ScoreToNextRound = 0;
 }

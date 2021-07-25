@@ -11,12 +11,6 @@ public class DestroyObjectTimer : MonoBehaviour
         StartCoroutine(TimedDestroy(TimeTillDestruction));
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     IEnumerator TimedDestroy(float destroyAfter)
     {
         yield return new WaitForSeconds(destroyAfter);

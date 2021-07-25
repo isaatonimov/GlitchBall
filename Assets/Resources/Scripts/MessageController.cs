@@ -17,12 +17,6 @@ namespace GlitchBallVR
             hudText = GetComponent<TextMeshProUGUI>();
         }
 
-        // Update is called once per frame
-        void Update()
-        {
-
-        }
-
         public void SetNewHUDText(string text)
         {
             hudText.SetText(text);
