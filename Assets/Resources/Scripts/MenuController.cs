@@ -23,25 +23,26 @@ public class MenuController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(MenuActive)
+        if (DebugButton1 != KeyCode.None)
         {
-            if (DebugButton1 != KeyCode.None)
-                if (Input.GetKeyDown(DebugButton1))
-                {
-                    Debug.Log("Pressed f1");
-                    OnButtonAPress.Invoke();
-                }
-
-
-            if (DebugButton2 != KeyCode.None)
-                if (Input.GetKeyDown(DebugButton2))
-                    OnButtonBPress.Invoke();
-
-            if (OVRInput.GetDown(OVRInput.Button.One) && ButtonAActive)
+            if (Input.GetKeyDown(DebugButton1))
+            {
                 OnButtonAPress.Invoke();
-
-            if (OVRInput.GetDown(OVRInput.Button.Two) && ButtonBActive)
-                OnButtonBPress.Invoke();
+            }
         }
+
+        if (DebugButton2 != KeyCode.None)
+        {
+            if (Input.GetKeyDown(DebugButton2))
+            {
+                OnButtonBPress.Invoke();
+            }
+        }
+
+        if (OVRInput.GetDown(OVRInput.Button.One) && ButtonAActive)
+            OnButtonAPress.Invoke();
+
+        if (OVRInput.GetDown(OVRInput.Button.Two) && ButtonBActive)
+            OnButtonBPress.Invoke();
     }
 }

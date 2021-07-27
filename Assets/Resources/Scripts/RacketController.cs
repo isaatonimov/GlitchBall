@@ -30,9 +30,9 @@ namespace GlitchBallVR
             if (collision.gameObject.tag == "Projectile")
             {
                 if (IsLeftController)
-                    OVRInput.SetControllerVibration(1, 1, OVRInput.Controller.LTouch);
+                    OVRInput.SetControllerVibration(0.1f, 0.2f, OVRInput.Controller.LTouch);
                 else
-                    OVRInput.SetControllerVibration(1, 1, OVRInput.Controller.RTouch);
+                    OVRInput.SetControllerVibration(0.1f, 0.2f, OVRInput.Controller.RTouch);
                 HitProjectile.Invoke();
                 HitSound.PlaySound();
                 //collision.gameObject.tag = "HitProjectile";

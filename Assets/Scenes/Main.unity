@@ -2225,7 +2225,7 @@ MonoBehaviour:
   ButtonAActive: 1
   ButtonBActive: 1
   DebugButton1: 282
-  DebugButton2: 283
+  DebugButton2: 284
 --- !u!114 &453169280
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4356,6 +4356,8 @@ GameObject:
   - component: {fileID: 714371556}
   - component: {fileID: 714371559}
   - component: {fileID: 714371555}
+  - component: {fileID: 714371560}
+  - component: {fileID: 714371561}
   m_Layer: 5
   m_Name: Main Menu
   m_TagString: Untagged
@@ -4519,6 +4521,40 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &714371560
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 714371554}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_FirstSelected: {fileID: 0}
+  m_sendNavigationEvents: 1
+  m_DragThreshold: 10
+--- !u!114 &714371561
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 714371554}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_HorizontalAxis: Horizontal
+  m_VerticalAxis: Vertical
+  m_SubmitButton: Submit
+  m_CancelButton: Cancel
+  m_InputActionsPerSecond: 10
+  m_RepeatDelay: 0.5
+  m_ForceModuleActive: 0
 --- !u!1 &721354229 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3145929479651483609, guid: 9f896c238de859c43a12eb15b0c2112e, type: 3}
@@ -5872,7 +5908,7 @@ MonoBehaviour:
     soundFXName: timerCounter
   ScoreBoard: {fileID: 469589403}
   GameOverScore: {fileID: 1992201619}
-  currentRoundConfig: {fileID: 0}
+  currentRoundConfig: {fileID: 11400000, guid: 2d4dec85e3bd99e48a2aad6326f74a75, type: 2}
   TimerDurationPerTick: 1
   TimeBeforeRoundStarts: 5
   GameLoaded:
@@ -6004,13 +6040,13 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UnityEngine.Renderer, UnityEngine
-        m_MethodName: set_enabled
-        m_Mode: 6
+      - m_Target: {fileID: 892736769}
+        m_TargetAssemblyTypeName: GlitchBallVR.GameManager, Assembly-CSharp
+        m_MethodName: SetCurrentRoundConfig
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 11400000, guid: 2d4dec85e3bd99e48a2aad6326f74a75, type: 2}
+          m_ObjectArgumentAssemblyTypeName: RoundConfiguration, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -7937,7 +7973,7 @@ GameObject:
   - component: {fileID: 1291219049}
   - component: {fileID: 1291219048}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Logo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8823,7 +8859,7 @@ GameObject:
   - component: {fileID: 1475718591}
   - component: {fileID: 1475718590}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
