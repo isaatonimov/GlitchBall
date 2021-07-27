@@ -9,4 +9,4 @@ Main Menu:
 
 Game Footage:
 
-coming soon...
+![maingame](./maingame.gif)
