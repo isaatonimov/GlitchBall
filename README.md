@@ -10,3 +10,7 @@ Main Menu:
 Game Footage:
 
 ![maingame](./maingame.gif)
+
+
+
+This project is for personal use only.
