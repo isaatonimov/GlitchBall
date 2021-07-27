@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using OVR;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
-using OVR;
+
 
 namespace GlitchBallVR
 {
@@ -10,6 +12,10 @@ namespace GlitchBallVR
     {
         public SoundFXRef RoundStart;
         public SoundFXRef StartCounter;
+
+        public ScoreController ScoreBoard;
+        public TextMeshProUGUI GameOverScore;
+        public RoundConfiguration currentRoundConfig;
 
         public float      TimerDurationPerTick  = 1f;
         public float      TimeBeforeRoundStarts   = 3f;
@@ -23,9 +29,8 @@ namespace GlitchBallVR
         public MessageController MsgController;
 
         public List<UnityEvent>     Rounds;
-        public List<int>            ScoreToNextRound;
 
-        private int                 scoreToNextRoundIndex = 0;
+        private int                 currentLifes = 3;
         private int                 currentRound = 0;
 
         private int currentScore;
@@ -44,9 +49,15 @@ namespace GlitchBallVR
 
         }
 
+        public void SetCurrentRoundConfig(RoundConfiguration roundConfig)
+        {
+            currentRoundConfig = roundConfig;
+        }
+
         public void ShowCurrentRound()
         {
-            MsgController.SetNewHUDText("ROUND " + currentRound);
+            RoundStart.PlaySound();
+            MsgController.SetNewHUDText("ROUND " + currentRoundConfig.Round);
         }
 
         public void DeleteAllCurrentProjectiles()
@@ -65,6 +76,10 @@ namespace GlitchBallVR
             }
         }
 
+        public void RemoveLife()
+        {
+            CurrentLifes--;
+        }
         public void AddScorePoints(int points)
         {
             CurrentScore += points;
@@ -77,6 +92,9 @@ namespace GlitchBallVR
 
         public void StartLevel(int round)
         {
+            if (round == 0)
+                CurrentScore = 0;
+
             StartCoroutine(StartLevelWithCounter(round));
         }
 
@@ -86,18 +104,49 @@ namespace GlitchBallVR
 
             yield return new WaitForSeconds(TimeBeforeRoundStarts);
 
-            for (int i = 0; i < 4; i++)
+            for (int i = 0; i < 3; i++)
             {
                 CounterTick.Invoke();
                 StartCounter.PlaySound();
                 yield return new WaitForSeconds(TimerDurationPerTick);
             }
             CounterTick.Invoke();
-            RoundStart.PlaySound();
+
+            StartCounter.PlaySoundAt(this.transform.position, 0f, 1f, 1.5f);
 
             Rounds[round].Invoke();
         }
 
+        public void SetGameOverScore()
+        {
+            GameOverScore.SetText(CurrentScore.ToString());
+        }
+
+        public int CurrentLifes 
+        {   
+            get
+            {
+                return currentLifes;
+            }
+            set
+            {
+                if(currentLifes == 0)
+                {
+                    GameOver.Invoke();
+
+                    currentLifes = 3;
+                }
+                else
+                {
+                    if(currentLifes == 1)
+                        MsgController.SetNewHUDText(currentLifes + " life left");
+                    else
+                        MsgController.SetNewHUDText(currentLifes + " lifes left");
+
+                    currentLifes = value;
+                }
+            }
+        }
         public int CurrentScore
         {
             get
@@ -106,26 +155,28 @@ namespace GlitchBallVR
             }
             set
             {
-                if (currentScore < 0)
-                {
-                    GameOver.Invoke();
-                }
 
-                if (currentScore == ScoreToNextRound[scoreToNextRoundIndex])
+                if (currentScore == currentRoundConfig.ScoreToNextRound)
                 {
-                    if(scoreToNextRoundIndex + 1 <= Rounds.Count)
-                    {
-                        currentRound++;
-                        StartCoroutine(StartLevelWithCounter(scoreToNextRoundIndex + 1));
-                        scoreToNextRoundIndex++;
-                    }
+                    if (currentRoundConfig.Round + 2 > Rounds.Count)
+                        GameWin.Invoke();
                     else
                     {
-                        GameWin.Invoke();
+                        Rounds[currentRoundConfig.Round + 1].Invoke();
+                        StartLevel(currentRoundConfig.Round);
                     }
                 }
 
-                currentScore = value;
+                if(value < 0)
+                {
+                    ScoreBoard.ShowCurrentScore(0);
+                }
+                else
+                {
+                    ScoreBoard.ShowCurrentScore(value);
+                    currentScore = value;
+                }
+
             }
         }
 

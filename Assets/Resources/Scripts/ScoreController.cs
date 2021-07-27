@@ -7,7 +7,6 @@ namespace GlitchBallVR
 {
     public class ScoreController : MonoBehaviour
     {
-        private int score = 0;
         private TextMeshProUGUI scoreText;
         // Start is called before the first frame update
         void Start()
@@ -21,11 +20,11 @@ namespace GlitchBallVR
 
         }
 
-        public void ShowCurrentScore()
+        public void ShowCurrentScore(int score)
         {
-            if (score < 0)
+            if (score <= 0)
             {
-                scoreText.SetText("GMVER");
+                scoreText.SetText("00");
             }
 
             if (score < 10 && score >= 0)
@@ -38,29 +37,6 @@ namespace GlitchBallVR
             }
         }
 
-        public void AddScorePoints(int points)
-        {
-            Score += points;
-        }
-
-        public void SubstractScorePoints(int points)
-        {
-            Score -= points;
-        }
-
-        public int Score
-        {
-            get
-            {
-                return score;
-            }
-            set
-            {
-                score = value;
-
-                ShowCurrentScore();
-            }
-        }
     }
 
 }

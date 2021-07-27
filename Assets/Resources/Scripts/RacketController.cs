@@ -11,6 +11,7 @@ namespace GlitchBallVR
         public UnityEvent HitProjectile;
         public UnityEvent HitTrap;
 
+        public bool IsLeftController;
         public SoundFXRef HitSound;
         public SoundFXRef HitTrapSound;
 
@@ -28,6 +29,10 @@ namespace GlitchBallVR
         {
             if (collision.gameObject.tag == "Projectile")
             {
+                if (IsLeftController)
+                    OVRInput.SetControllerVibration(1, 1, OVRInput.Controller.LTouch);
+                else
+                    OVRInput.SetControllerVibration(1, 1, OVRInput.Controller.RTouch);
                 HitProjectile.Invoke();
                 HitSound.PlaySound();
                 //collision.gameObject.tag = "HitProjectile";

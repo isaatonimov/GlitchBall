@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c2632672be0c0940895f42ce65def26, type: 3}
   m_Name: RoundConfig1
   m_EditorClassIdentifier: 
-  ShootingPattern: 
-  TrapsEnabled: 0
+  Round: 1
+  ShootingPattern: 0000000001000000
+  TrapsEnabled: 1
   TrapChance: 15
   RandomStops: 0
   StopAtWaypoint: 1
@@ -23,11 +24,11 @@ MonoBehaviour:
   RotateOnStop: 1
   RotationXmin: 85
   RotationXmax: 90
-  ShootingForceMin: 8
+  ShootingForceMin: 12
   ShootingForceMax: 8
   ShootTimerActive: 0
   ShootAtWaypoint: 1
   ShootingTimerInterval: 1
   Burstrate: 2
-  BurstInterval: 0.4
-  ScoreToNextRound: 0
+  BurstInterval: 0.475
+  ScoreToNextRound: 19

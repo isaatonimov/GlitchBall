@@ -109,7 +109,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d59131174d8fa1b46ba0f36a96746e98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Hit:
+    soundFXName: Default Sound
+  Miss:
+    soundFXName: Default Sound
+  ParticlesOnDestroy: {fileID: 0}
   Magazine: {fileID: 0}
+  ResetTime: 15
+  HitTarget:
+    m_PersistentCalls:
+      m_Calls: []
+  MissedTarget:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!54 &1119809003256844681
 Rigidbody:
   m_ObjectHideFlags: 0

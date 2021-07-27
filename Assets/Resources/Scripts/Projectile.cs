@@ -59,8 +59,8 @@ namespace GlitchBallVR
 
         private void OnDestroy()
         {
-            GameObject particles = GameObject.Instantiate(ParticlesOnDestroy);
-            particles.transform.position = this.transform.position;
+            //GameObject particles = GameObject.Instantiate(ParticlesOnDestroy);
+            //particles.transform.position = this.transform.position;
         }
         private void OnCollisionEnter(Collision collision)
         {

@@ -22,7 +22,7 @@ namespace GlitchBallVR
         public GameObject TrapPrefab;
 
         public Transform fixedCannonShootingPoint;
-        public Transform player;
+        public Transform ShootingTarget;
 
         private RoundConfiguration currentRoundConfig;
 
@@ -169,20 +169,26 @@ namespace GlitchBallVR
 
             GameObject projectileToShoot = null;
 
-            if (Random.Range(0f, 100f) > currentRoundConfig.TrapChance)
+            if (currentRoundConfig.TrapsEnabled == false)
+            {
                 projectileToShoot = GameObject.Instantiate(ProjectilePrefab);
+            }
             else
-                projectileToShoot = GameObject.Instantiate(TrapPrefab);
+            {
+                if(Random.Range(0f, 100f) > currentRoundConfig.TrapChance)
+                    projectileToShoot = GameObject.Instantiate(ProjectilePrefab);
+                else
+                    projectileToShoot = GameObject.Instantiate(TrapPrefab);
+            }
 
             projectileToShoot.transform.position = transform.GetChild(0).position;
-            //projectileToShoot.transform.position = fixedCannonShootingPoint.position;
 
             float randomShootingForce = Random.Range(currentRoundConfig.ShootingForceMin, currentRoundConfig.ShootingForceMax);
 
             var gravity = System.Math.Abs(Physics.gravity.y);
-            Debug.Log(gravity);
-            Debug.Log(player.position);
-            var numSolutions = Ballistics.solve_ballistic_arc(projectileToShoot.transform.position, currentRoundConfig.ShootingForceMin, player.position, gravity, out var s0, out var s1);
+
+            var numSolutions = Ballistics.solve_ballistic_arc(projectileToShoot.transform.position, currentRoundConfig.ShootingForceMin, ShootingTarget.position, gravity, out var s0, out var s1);
+
             if (numSolutions > 0)
             {
                 projectileToShoot.GetComponent<Rigidbody>().AddForce(s0, ForceMode.Impulse);
@@ -191,8 +197,6 @@ namespace GlitchBallVR
             {
                 Debug.LogWarning("Womp womp");
             }
-
-            //-> for calculating different angle - Mathf.Tan(currentRotation.x);
         }
 
     }

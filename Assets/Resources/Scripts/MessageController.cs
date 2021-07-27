@@ -20,7 +20,7 @@ namespace GlitchBallVR
         public void SetNewHUDText(string text)
         {
             hudText.SetText(text);
-            animator.SetTrigger("Fade_in");
+            animator.SetTrigger("Fade_In");
         }
     }
 }

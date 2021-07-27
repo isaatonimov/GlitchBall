@@ -10,25 +10,25 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3c2632672be0c0940895f42ce65def26, type: 3}
-  m_Name: RoundConfig0
+  m_Name: RoundConfig3
   m_EditorClassIdentifier: 
-  Round: 0
-  ShootingPattern: 00000000
-  TrapsEnabled: 0
+  Round: 3
+  ShootingPattern: 000000000000000001000000
+  TrapsEnabled: 1
   TrapChance: 15
   RandomStops: 0
   StopAtWaypoint: 1
   MinStopDuration: 1
   MaxStopDuration: 3
-  MovementSpeed: 4
+  MovementSpeed: 5.86
   RotateOnStop: 1
   RotationXmin: 85
   RotationXmax: 90
-  ShootingForceMin: 14
+  ShootingForceMin: 17.3
   ShootingForceMax: 8
   ShootTimerActive: 0
   ShootAtWaypoint: 1
-  ShootingTimerInterval: 1.91
+  ShootingTimerInterval: 1
   Burstrate: 2
   BurstInterval: 0.4
-  ScoreToNextRound: 9
+  ScoreToNextRound: 69

@@ -6,6 +6,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "RoundConfig", menuName = "ScriptableObjects/RoundConfiguration", order = 1)]
 public class RoundConfiguration : ScriptableObject
 {
+    public int Round = 0;
     public List<ShootingMode> ShootingPattern;
     public bool TrapsEnabled = false;
     [Range(0f, 100f)]
