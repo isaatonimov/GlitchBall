@@ -11,6 +11,13 @@ Game Footage:
 
 ![maingame](./maingame.gif)
 
+How to play:
 
+The game is very easy, just hit the incoming balls and avoid the traps.
+The levels get progressivly harder and you have just 3 lifes.
+You lose lifes when you fail to hit a incoming ball or hit a trap.
+Good Luck!
+
+![projectiles](./projectiles.gif)
 
 This project is for personal use only.
