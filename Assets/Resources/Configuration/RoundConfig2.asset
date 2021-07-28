@@ -24,7 +24,7 @@ MonoBehaviour:
   RotateOnStop: 1
   RotationXmin: 85
   RotationXmax: 90
-  ShootingForceMin: 20.2
+  ShootingForceMin: 13.5
   ShootingForceMax: 8
   ShootTimerActive: 0
   ShootAtWaypoint: 1

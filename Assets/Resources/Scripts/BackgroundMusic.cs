@@ -8,16 +8,27 @@ namespace GlitchBallVR
     public class BackgroundMusic : MonoBehaviour
     {
         public SoundFXRef Track;
+        private bool trackPlaying;
+
         // Start is called before the first frame update
         void Start()
         {
             Track.PlaySound();
+            trackPlaying = true;
         }
 
-        // Update is called once per frame
-        void Update()
+        public void ToggleBackgroundTrack()
         {
-
+            if (trackPlaying)
+            {
+                Track.StopSound();
+                trackPlaying = false;
+            }
+            else
+            {
+                Track.PlaySound();
+                trackPlaying = true;
+            }
         }
     }
 }

@@ -10,6 +10,7 @@ namespace GlitchBallVR
     {
         public UnityEvent Miss;
         public SoundFXRef MissSound;
+        public GameObject ParticlesOnDestroy;
 
         private bool behaviourPaused = false;
 
@@ -18,12 +19,6 @@ namespace GlitchBallVR
         {
             if (Miss == null)
                 Miss = new UnityEvent();
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
         }
 
         public void PauseBehavior()
@@ -43,14 +38,20 @@ namespace GlitchBallVR
                 if(!behaviourPaused)
                     Miss.Invoke();
 
-                MissSound.PlaySound();
+                MissSound.PlaySoundAt(collision.transform.position);
+
+                GameObject particles = GameObject.Instantiate(ParticlesOnDestroy);
+                particles.transform.position = collision.transform.position;
+
+                //controller vibration on miss
+                OVRInput.SetControllerVibration(0.1f, 0.2f, OVRInput.Controller.LTouch);
+                OVRInput.SetControllerVibration(0.1f, 0.2f, OVRInput.Controller.RTouch);
+
                 GameObject.Destroy(collision.gameObject);
             }
 
             if (collision.gameObject.tag == "Trap" && behaviourPaused == false)
-            {
                 GameObject.Destroy(collision.gameObject);
-            }
 
         }
     }

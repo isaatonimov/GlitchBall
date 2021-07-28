@@ -31,7 +31,6 @@ namespace GlitchBallVR
         public List<UnityEvent>     Rounds;
 
         private int                 currentLifes = 3;
-        private int                 currentRound = 0;
 
         private int currentScore;
         // Start is called before the first frame update
@@ -41,12 +40,6 @@ namespace GlitchBallVR
                 Rounds = new List<UnityEvent>();
 
             GameLoaded.Invoke();
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
         }
 
         public void SetCurrentRoundConfig(RoundConfiguration roundConfig)
@@ -159,7 +152,7 @@ namespace GlitchBallVR
                 if (currentScore == currentRoundConfig.ScoreToNextRound)
                 {
                     if (currentRoundConfig.Round + 2 > Rounds.Count)
-                        GameWin.Invoke();
+                        GameOver.Invoke();
                     else
                     {
                         Rounds[currentRoundConfig.Round + 1].Invoke();

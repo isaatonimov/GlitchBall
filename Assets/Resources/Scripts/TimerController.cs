@@ -13,12 +13,6 @@ public class TimerController : MonoBehaviour
         counterText = GetComponent<TextMeshProUGUI>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void CounterTick()
     {
         if (counter == 0)

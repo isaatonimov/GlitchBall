@@ -30,9 +30,6 @@ namespace GlitchBallVR
         private int currentShootModeIndex = 0;
 
         private bool currentlyStopped       = true;
-        private bool currentlyWaitingWPnt   = false;
-        private bool currentlyRotating      = false;
-        private bool currentlyShooting      = false;
 
         private Quaternion currentRotation;
         private float shootTimer = 5f;
@@ -87,6 +84,7 @@ namespace GlitchBallVR
         {
             currentRoundConfig = roundConfig;
 
+            currentShootModeIndex = 0;
             currentlyStopped = false;
         }
 
@@ -195,7 +193,7 @@ namespace GlitchBallVR
             }
             else
             {
-                Debug.LogWarning("Womp womp");
+                Debug.LogWarning("curve not solveable, maybe change shooting force");
             }
         }
 

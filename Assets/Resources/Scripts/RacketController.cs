@@ -14,6 +14,7 @@ namespace GlitchBallVR
         public bool IsLeftController;
         public SoundFXRef HitSound;
         public SoundFXRef HitTrapSound;
+        public GameObject ParticlesOnDestroy;
 
         // Start is called before the first frame update
         void Start()
@@ -29,20 +30,28 @@ namespace GlitchBallVR
         {
             if (collision.gameObject.tag == "Projectile")
             {
-                if (IsLeftController)
-                    OVRInput.SetControllerVibration(0.1f, 0.2f, OVRInput.Controller.LTouch);
-                else
-                    OVRInput.SetControllerVibration(0.1f, 0.2f, OVRInput.Controller.RTouch);
+                
                 HitProjectile.Invoke();
-                HitSound.PlaySound();
-                //collision.gameObject.tag = "HitProjectile";
+                HitSound.PlaySoundAt(collision.transform.position);
+
+                GameObject particles = GameObject.Instantiate(ParticlesOnDestroy);
+                particles.transform.position = collision.transform.position;
+
                 GameObject.Destroy(collision.gameObject);
             }
 
             if (collision.gameObject.tag == "Trap")
             {
                 HitTrap.Invoke();
-                HitTrapSound.PlaySound();
+                HitTrapSound.PlaySoundAt(collision.transform.position);
+
+                OVRInput.SetControllerVibration(0.1f, 0.2f, OVRInput.Controller.LTouch);
+                OVRInput.SetControllerVibration(0.1f, 0.2f, OVRInput.Controller.RTouch);
+
+
+                GameObject particles = GameObject.Instantiate(ParticlesOnDestroy);
+                particles.transform.position = collision.transform.position;
+
                 GameObject.Destroy(collision.gameObject);
             }
         }

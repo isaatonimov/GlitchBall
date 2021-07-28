@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1444669279100229815}
-  - component: {fileID: 3582638777143222518}
   - component: {fileID: 1466006414516631710}
   m_Layer: 0
   m_Name: Trap
@@ -33,31 +32,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -25, y: 175, z: 0}
---- !u!114 &3582638777143222518
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2253963251056378381}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d59131174d8fa1b46ba0f36a96746e98, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Hit:
-    soundFXName: Default Sound
-  Miss:
-    soundFXName: Default Sound
-  ParticlesOnDestroy: {fileID: 0}
-  Magazine: {fileID: 0}
-  ResetTime: 15
-  HitTarget:
-    m_PersistentCalls:
-      m_Calls: []
-  MissedTarget:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!54 &1466006414516631710
 Rigidbody:
   m_ObjectHideFlags: 0

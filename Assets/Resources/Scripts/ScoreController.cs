@@ -14,12 +14,6 @@ namespace GlitchBallVR
             scoreText = GetComponent<TextMeshProUGUI>();
         }
 
-        // Update is called once per frame
-        void Update()
-        {
-
-        }
-
         public void ShowCurrentScore(int score)
         {
             if (score <= 0)

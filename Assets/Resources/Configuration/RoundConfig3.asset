@@ -18,13 +18,13 @@ MonoBehaviour:
   TrapChance: 15
   RandomStops: 0
   StopAtWaypoint: 1
-  MinStopDuration: 0.28
+  MinStopDuration: 0.44
   MaxStopDuration: 1.19
   MovementSpeed: 6.34
   RotateOnStop: 1
   RotationXmin: 85
   RotationXmax: 90
-  ShootingForceMin: 20.2
+  ShootingForceMin: 13.3
   ShootingForceMax: 8
   ShootTimerActive: 0
   ShootAtWaypoint: 1
